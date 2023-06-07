@@ -26,7 +26,9 @@ export function WalletListBlank() {
           placeholder="Type wallet address..."/>
       </div>
       <div className="col-auto">
-        <button type="submit" className="btn btn-primary mb-3">Add</button>
+        <button type="submit" className="btn btn-primary mb-3">
+          Add
+        </button>
       </div>
     </form>
   );
