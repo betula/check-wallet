@@ -1,29 +1,10 @@
-import { PropsWithChildren }  from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Container, Button, Row, Col, Card }  from 'react-bootstrap';
-
-function Layout({ children }: PropsWithChildren) {
-  return (
-    <div>
-      <Container>
-        <Row className="vh-100 d-flex justify-content-center">
-          <Col md={8} lg={6} xs={12}>
-            <div className="border border-3 border-primary"></div>
-            <Card className="shadow">
-              <Card.Body>
-                {children}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
-}
+import { Button }  from 'react-bootstrap';
+import { HomeLayout } from './HomeLayout';
 
 export function Home() {
   return (
-    <Layout>
+    <HomeLayout>
       <h1>Welcome to Check Wallet</h1>
       <p>
         Check old and new wallets and see how much money they have in different currencies!
@@ -41,6 +22,6 @@ export function Home() {
           Slava Bereza CV
         </a>
       </footer>
-    </Layout>
+    </HomeLayout>
   );
 }

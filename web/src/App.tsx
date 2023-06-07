@@ -1,5 +1,6 @@
 import {
   ClerkProvider,
+  RedirectToSignIn,
   SignedIn,
   SignedOut,
   SignIn,
@@ -10,6 +11,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 import { Main } from "./components/Main";
 import { Home } from "./components/Home";
+import { Favorites } from "./components/Favorites";
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -32,6 +34,15 @@ export function Clerk() {
             </SignedIn>
             <SignedOut>
               <Home />
+            </SignedOut>
+          </>} 
+        />
+        <Route path="/favorites" element={<>
+            <SignedIn>
+              <Favorites />
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn />
             </SignedOut>
           </>} 
         />
