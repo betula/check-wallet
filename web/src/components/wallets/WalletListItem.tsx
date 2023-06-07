@@ -1,11 +1,21 @@
-import { WalletRecord } from "../../logic/wallet-list";
+import { observer } from "mobx-react-lite";
+import { WalletRecord, walletListStore } from "../../stores/wallet-list-store";
 
 interface Props {
   record: WalletRecord
 }
 
-export function WalletListItem({ record }: Props) {
+export const WalletListItem = observer(({ record }: Props) => {
   return (
-    <p>{record.address}</p>
+    <li className="list-group-item d-flex justify-content-between align-items-center">
+      <div className="d-flex gap-3">
+        <i className="bi bi-star"></i>
+        <div>{record.address}</div>
+      </div>
+      <div className="d-flex gap-3">
+        <i className="bi bi-pencil-square"></i>
+        <i className="bi bi-trash3" onClick={() => walletListStore.remove(record)}></i>
+      </div>
+    </li>
   );
-}
+});

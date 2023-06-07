@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addWallet } from "../../logic/wallet-list";
+import { walletListStore } from "../../stores/wallet-list-store";
 
 
 export function WalletListBlank() {
@@ -7,7 +7,8 @@ export function WalletListBlank() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addWallet(text);
+    walletListStore.add(text);
+    setText('');
   }
 
   const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
@@ -15,10 +16,11 @@ export function WalletListBlank() {
   }
 
   return (
-    <form className="container row g-3" onSubmit={handleSubmit}>
+    <form className="my-2 row g-3" onSubmit={handleSubmit}>
       <div className="col-auto col-8">
         <input 
           type="text"
+          value={text}
           onInput={handleInput}
           className="form-control"
           placeholder="Type wallet address..."/>

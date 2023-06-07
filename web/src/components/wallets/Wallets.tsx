@@ -1,16 +1,16 @@
-import { WalletList } from "./WalletList";
+import { WalletListGroup } from "./WalletListGroup";
 import { WalletListBlank } from "./WalletListBlank";
+import { WalletFavLink } from "./WalletFavLink";
 
 export function Wallets() {
   return (
-    <>
+    <div className="container my-3">
       <h1>Wallets</h1>
 
-      <WalletList />
+      <WalletListGroup />
       <WalletListBlank />
-      <p>
-        Please add some of your wallet to favorites, for checking.
-      </p>
-    </>
+      <WalletFavLink />
+      
+    </div>
   )
 }
