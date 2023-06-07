@@ -11,7 +11,7 @@ export const WalletListItem = observer(({ record }: Props) => {
     <li className="list-group-item d-flex justify-content-between align-items-center">
       <div className="d-flex gap-3" style={{overflow: 'hidden'}}>
         <i className="bi bi-star"></i>
-        <div style={{overflow: 'hidden'}}>
+        <div style={{overflow: 'hidden'}} title={record.address}>
           <MiddleTruncate
             text={record.address}/>
         </div>

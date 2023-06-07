@@ -13,8 +13,8 @@ export const WalletListGroup = observer(() => {
 
   return (
     <ul className="list-group">
-      {list.map(record => (
-        <WalletListItem record={record} />
+      {list.map((record, index) => (
+        <WalletListItem record={record} key={index} />
       ))}
     </ul>
   );
