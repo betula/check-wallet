@@ -1,15 +1,19 @@
-import { signal }  from '@preact/signals-react';
-import { Button, Alert } from 'react-bootstrap';
+// import { signal }  from '@preact/signals-react';
+// import { Button, Alert } from 'react-bootstrap';
 import { UserButton } from "@clerk/clerk-react";
+import { Wallets } from './wallets/Wallets';
 
-const show$ = signal(true);
+
+// const show$ = signal(true);
 
 export function Main() {
   return (
     <>
       <UserButton />
 
-      <h1>Main</h1>
+      <Wallets />
+
+      {/* <i className="bi bi-pencil-square"></i>
 
       <Alert show={show$.value} variant="success">
         <Alert.Heading>My Alert</Alert.Heading>
@@ -26,7 +30,7 @@ export function Main() {
         </div>
       </Alert>
 
-      {!show$.value && <Button onClick={() => (show$.value = true)}>Show Alert</Button>}
+      {!show$.value && <Button onClick={() => (show$.value = true)}>Show Alert</Button>} */}
     </>
   );
 }
