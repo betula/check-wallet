@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { Main } from "./components/Main";
 import { Home } from "./components/Home";
 import { Favorites } from "./components/Favorites";
+import { CenterLayout } from "./components/CenterLayout";
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
@@ -48,15 +49,15 @@ export function Clerk() {
         />
         <Route
           path="/sign-in/*"
-          element={<SignIn routing="path" path="/sign-in" />}
+          element={<CenterLayout><SignIn routing="path" path="/sign-in" /></CenterLayout>}
         />
         <Route
           path="/sign-up/*"
-          element={<SignUp routing="path" path="/sign-up" />}
+          element={<CenterLayout><SignUp routing="path" path="/sign-up" /></CenterLayout>}
         />
         <Route
           path="/user"
-          element={<UserProfile routing="path" path="/user" />}
+          element={<CenterLayout><UserProfile routing="path" path="/user" /></CenterLayout>}
         />
       </Routes>
     </ClerkProvider>
