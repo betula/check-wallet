@@ -15,7 +15,7 @@ export const WalletListItem = observer(({ record }: Props) => {
 
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
-      <div className="d-flex gap-3 align-items-center" style={{overflow: 'hidden'}}>
+      <div className="d-flex gap-3 align-items-center flex-grow-1" style={{overflow: 'hidden'}}>
         <i
           onClick={toggleFavorite}
           role="button"
