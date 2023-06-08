@@ -30,17 +30,11 @@ export const WalletListItemEditable = observer(({ record, onExit }: Props) => {
           className="form-control"
           placeholder="Type wallet address..."/>
       </div>
-      <div className="col-auto col-4 gap-2 d-flex">
-        <button type="submit" className="btn btn-primary btn-sm">
-          Ok
+      <div className="col-auto col-4 gap-2 d-flex align-items-center">
+        <button type="submit" className="btn btn-sm" style={{padding: 0}}>
+          <i className="bi bi-check-lg"></i>
         </button>
-        <button
-          type="button"
-          className="btn btn-primary btn-sm"
-          onClick={onExit}
-          >
-          <i className="bi bi-x-lg"></i>
-        </button>
+        <i role="button" className="bi bi-x-lg" onClick={onExit}></i>
       </div>
     </form>
   );
