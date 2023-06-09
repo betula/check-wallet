@@ -1,5 +1,6 @@
 import { computed, makeObservable, observable, reaction, transaction } from "mobx";
 import throttle from 'lodash/throttle';
+import { globalPendingStore } from "./global-pending-store";
 
 const THROTTLE_MS = 500;
 
@@ -31,6 +32,9 @@ export abstract class SyncAbstract {
       this.throttledLoad();
       this.switchOnSync();
     });
+
+    // Registed in global pending store
+    globalPendingStore.pushExpression(() => this.pending);
   }
 
   protected throttledLoad = throttle(() => this.load(), THROTTLE_MS);

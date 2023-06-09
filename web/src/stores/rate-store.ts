@@ -13,9 +13,6 @@ class RateStore {
   @computed get initialized() {
     return this.sync.initialized && currencyListStore.sync.initialized;
   }
-  @computed get pending() {
-    return this.sync.pending || currencyListStore.sync.pending;
-  }
 
   @computed get currencies() {
     return currencyListStore.list.concat({

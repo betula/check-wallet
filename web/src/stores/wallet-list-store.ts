@@ -35,6 +35,9 @@ class WalletListStore {
   }
 
   updateAddress(record: WalletRecord, address: string) {
+    if (record.address === address) {
+      return;
+    }
     this.update(record, { address });
   }
 

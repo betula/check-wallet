@@ -1,7 +1,6 @@
 import { WalletListGroup } from "./WalletListGroup";
 import { WalletListBlank } from "./WalletListBlank";
 import { WalletFavLink } from "./WalletFavLink";
-import { WalletPendingIndicator } from "./WalletPendingIndicator";
 import { walletListStore } from "../../stores/wallet-list-store";
 import { observer } from "mobx-react-lite";
 
@@ -23,7 +22,7 @@ export const Wallets = observer(() => {
 
   return (
     <div className="container my-3">
-      <h1>Wallets <WalletPendingIndicator /></h1>
+      <h1>Wallets</h1>
       {renderBody()}
     </div>
   )
