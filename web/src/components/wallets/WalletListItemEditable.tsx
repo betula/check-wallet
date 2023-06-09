@@ -12,6 +12,9 @@ export const WalletListItemEditable = observer(({ record, onExit }: Props) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!text) {
+      return;
+    }
     walletListStore.updateAddress(record, text);
     onExit();
   }
@@ -31,7 +34,7 @@ export const WalletListItemEditable = observer(({ record, onExit }: Props) => {
           placeholder="Type wallet address..."/>
       </div>
       <div className="col-auto col-4 gap-2 d-flex align-items-center">
-        <button type="submit" className="btn btn-sm" style={{padding: 0}}>
+        <button type="submit" className="btn" style={{padding: 0}}>
           <i className="bi bi-check-lg"></i>
         </button>
         <i role="button" className="bi bi-x-lg" onClick={onExit}></i>

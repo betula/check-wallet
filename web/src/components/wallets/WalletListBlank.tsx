@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { walletListStore } from "../../stores/wallet-list-store";
-import { walletListSyncStore } from "../../stores/wallet-list-sync-store";
 import { observer } from "mobx-react-lite";
-
 
 export const WalletListBlank = observer(() => {
   const [text, setText] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!text || walletListSyncStore.loading) {
+    if (!text) {
       return;
     }
     walletListStore.add(text);
@@ -18,10 +16,6 @@ export const WalletListBlank = observer(() => {
 
   const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
     setText(event.currentTarget.value);
-  }
-
-  if (walletListSyncStore.loading) {
-    return null;
   }
 
   return (

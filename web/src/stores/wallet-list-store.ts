@@ -1,4 +1,5 @@
-import { computed, makeAutoObservable, observable } from "mobx";
+import { computed, makeObservable, observable } from "mobx";
+import { WalletListSync } from "./wallet-list-sync";
 
 export interface WalletRecord {
   address: string;
@@ -6,17 +7,16 @@ export interface WalletRecord {
 }
 
 class WalletListStore {
-  list: WalletRecord[] = [];
+  sync = new WalletListSync();
 
-  get favorites() {
+  @observable.ref list: WalletRecord[] = [];
+
+  @computed get favorites() {
     return this.list.filter(item => item.favorite);
   }
 
   constructor() {
-    makeAutoObservable(this, {
-      list: observable.ref,
-      favorites: computed
-    });
+    makeObservable(this);
   }
 
   add(address: string) {

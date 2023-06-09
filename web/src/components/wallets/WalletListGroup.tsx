@@ -1,12 +1,11 @@
 import { observer } from "mobx-react-lite";
 import { WalletListItem } from "./WalletListItem";
 import { walletListStore } from "../../stores/wallet-list-store";
-import { walletListSyncStore } from "../../stores/wallet-list-sync-store";
 
 export const WalletListGroup = observer(() => {
   const { list } = walletListStore;
 
-  if (!list.length && !walletListSyncStore.loading) {
+  if (!list.length) {
     return (
       <div>Please add some wallets</div>
     )

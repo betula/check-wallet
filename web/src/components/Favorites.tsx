@@ -1,8 +1,10 @@
 import { LinkContainer } from 'react-router-bootstrap';
 import { MainLayout } from './MainLayout';
 import { Rate } from './rate/Rate';
+import { rateStore } from '../stores/rate-store';
+import { observer } from 'mobx-react-lite';
 
-export function Favorites() {
+export const Favorites = observer(() => {
   return (
     <MainLayout>
       <LinkContainer to="/">
@@ -14,7 +16,9 @@ export function Favorites() {
       <Rate/>
       <div className="container my-3">
         <h1>Favorites</h1>
+
+        <p>{rateStore.selectedCurrency?.name} : {rateStore.selectedCurrency?.ethCost}</p>
       </div>
     </MainLayout>
   );
-}
+});
