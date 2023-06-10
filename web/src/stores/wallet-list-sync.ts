@@ -2,7 +2,7 @@ import { walletListStore } from "./wallet-list-store";
 import { SyncAbstract } from "./lib/sync-abstract";
 
 export class WalletListSync extends SyncAbstract {
-  protected get data() {
+  protected get syncData() {
     return walletListStore.list;
   }
 
@@ -16,7 +16,7 @@ export class WalletListSync extends SyncAbstract {
   }
 
   protected async syncHandler() {
-    console.log('SYNC WALLET LIST', this.data);
+    console.log('SYNC WALLET LIST', this.syncData);
     await new Promise(r => setTimeout(r, 1000));
   }
 }

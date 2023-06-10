@@ -3,8 +3,7 @@ import { SyncAbstract } from "./lib/sync-abstract";
 import { computed, makeObservable } from "mobx";
 
 export class RateSync extends SyncAbstract {
-
-  @computed protected get data() {
+  @computed protected get syncData() {
     return {
       selectedName: rateStore.selectedName,
       ethCostManual: rateStore.ethCostManual
@@ -23,7 +22,7 @@ export class RateSync extends SyncAbstract {
   }
 
   protected async syncHandler() {
-    console.log('SYNC RATE', this.data);
+    console.log('SYNC RATE', this.syncData);
     await new Promise(r => setTimeout(r, 1000));
   }
 }

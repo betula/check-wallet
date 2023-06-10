@@ -4,7 +4,7 @@ import { SyncAbstract } from "./lib/sync-abstract";
 const PULL_MS = 1000 * 60 * 5; // auto update currency rate each 5 minutes
 
 export class CurrencyListSync extends SyncAbstract {
-  protected get data() {
+  protected get syncData() {
     return currencyListStore.list;
   }
 

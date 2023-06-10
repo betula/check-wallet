@@ -12,8 +12,13 @@ class GlobalPendingStore {
     makeObservable(this);
   }
 
-  pushExpression(expr: VoidFunction) {
+  attach(expr: VoidFunction) {
     this.list = this.list.concat(expr);
+
+    return () => {
+      // detach
+      this.list = this.list.filter(item => item !== expr);
+    }
   }
 }
 
