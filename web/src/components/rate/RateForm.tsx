@@ -28,7 +28,7 @@ export const RateForm = observer(() => {
       <div className="col-auto d-flex gap-3 col-8 align-items-center">
           {!editable ? (
             <>
-              <div className="col-auto" onClick={() => setEditable(true)}>
+              <div className="col-auto" onClick={() => setEditable(true)} style={{cursor: 'pointer'}}>
                 {rateStore.selectedCurrency?.ethCost}
               </div>
               <div className="col-auto">

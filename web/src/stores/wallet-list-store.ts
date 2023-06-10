@@ -1,5 +1,5 @@
 import { computed, makeObservable, observable } from "mobx";
-import { WalletListSync } from "./wallet-list-sync";
+import { WalletListSync } from "./sync/wallet-list-sync";
 
 export interface WalletRecord {
   address: string;

@@ -1,5 +1,5 @@
-import { rateStore } from "./rate-store";
-import { SyncAbstract } from "./lib/sync-abstract";
+import { rateStore } from "../rate-store";
+import { SyncAbstract } from "../lib/sync-abstract";
 import { computed, makeObservable } from "mobx";
 
 export class RateSync extends SyncAbstract {

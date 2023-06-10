@@ -1,10 +1,11 @@
 import { when } from "mobx";
-import { SyncAbstract } from "./lib/sync-abstract";
-import { walletListStore } from "./wallet-list-store";
+import { SyncAbstract } from "../lib/sync-abstract";
+import { walletListStore } from "../wallet-list-store";
 
 export class FavoriteListSync extends SyncAbstract {
 
   protected async init() {
+    // wait loading dependency
     await when(() => walletListStore.sync.initialized);
     super.init();
   }

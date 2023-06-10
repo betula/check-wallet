@@ -1,5 +1,5 @@
 import { makeObservable, observable } from "mobx";
-import { CurrencyListSync } from "./currency-list-sync";
+import { CurrencyListSync } from "./sync/currency-list-sync";
 
 export interface CurrencyRecord {
   name: string;

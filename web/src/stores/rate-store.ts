@@ -1,8 +1,8 @@
 import { computed, makeObservable, observable, transaction } from "mobx";
 import { currencyListStore } from "./currency-list-store";
-import { RateSync } from "./rate-sync";
+import { RateSync } from "./sync/rate-sync";
 
-const MANUAL_NAME = 'Custom';
+export const MANUAL_NAME = 'Manual';
 
 class RateStore {
   sync = new RateSync();
