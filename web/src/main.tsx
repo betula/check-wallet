@@ -4,6 +4,7 @@ import { App } from './App.tsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 configure({
     enforceActions: "never",

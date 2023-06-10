@@ -1,6 +1,8 @@
 import { rateStore } from "../rate-store";
 import { SyncAbstract } from "../lib/sync-abstract";
 import { computed, makeObservable } from "mobx";
+import { toast } from "react-toastify";
+import { api } from "../lib/api";
 
 export class RateSync extends SyncAbstract {
   @computed protected get syncData() {
@@ -16,13 +18,24 @@ export class RateSync extends SyncAbstract {
   }
 
   protected async loadHandler() {
+    try {
+      await api('/customer-rate/get');
+    }
+    catch {
+      toast.error('Failed to load customer rate');
+    }
     await new Promise(r => setTimeout(r, 1000));
+
     rateStore.selectedName = 'USD';
-    console.log('LOAD RATE');
   }
 
   protected async syncHandler() {
-    console.log('SYNC RATE', this.syncData);
+    try {
+      await api('/customer-rate/put', this.syncData);
+    }
+    catch {
+      toast.error('Failed to save customer rate');
+    }
     await new Promise(r => setTimeout(r, 1000));
   }
 }

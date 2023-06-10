@@ -1,6 +1,5 @@
 import { computed, makeObservable, observable } from "mobx";
 
-
 class GlobalPendingStore {
   @observable.ref protected list: VoidFunction[] = [];
 
