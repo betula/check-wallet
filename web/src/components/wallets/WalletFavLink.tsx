@@ -11,8 +11,8 @@ export const WalletFavLink = observer(() => {
 
   if (!favorites.length) {
     return (
-      <div>
-        Please add some of your wallets to favorites, for checking.
+      <div className="alert alert-info" role="alert">
+        Please add some of your wallets to favorites <i className="bi bi-star"></i>, for checking.
       </div>
     );
   }
