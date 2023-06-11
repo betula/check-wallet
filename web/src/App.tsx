@@ -19,12 +19,11 @@ import { useEffect } from "react";
 import { authStore } from "./stores/lib/auth-store";
 import { transaction } from "mobx";
 
-const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
+const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!clerkPubKey) {
   throw new Error("Missing Publishable Key")
 }
-
 
 function Content() {
   return (
@@ -72,18 +71,14 @@ function ClerkUser(props: React.PropsWithChildren) {
 }
 
 function ClerkAuthConnector() {
-  const { getToken, isLoaded, isSignedIn, userId, sessionId } = useAuth();
+  const { getToken, isLoaded, isSignedIn } = useAuth();
   useEffect(() => {
-    async function putToken() {
-      const data = await getToken();
-      transaction(() => {
-        authStore.token = data;
-        authStore.isLoaded = isLoaded;
-        authStore.isSignedIn = isSignedIn || false;
-      });
-    }
-    putToken();
-  }, [getToken, isLoaded, isSignedIn, userId, sessionId]);
+    transaction(() => {
+      authStore.getTokenDelegate = getToken;
+      authStore.isLoaded = isLoaded;
+      authStore.isSignedIn = isSignedIn || false;
+    });
+  }, [getToken, isLoaded, isSignedIn]);
 
   return null;
 }

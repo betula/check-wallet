@@ -7,6 +7,7 @@ export async function api(url: string, data?: unknown) {
   await when(() => authStore.isLoaded);
   await when(() => authStore.isSignedIn);
 
+  const token = await authStore.getToken();
   const options: RequestInit = {
     method: 'POST',
     mode: "cors",
@@ -14,7 +15,7 @@ export async function api(url: string, data?: unknown) {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authStore.token}`
+      "Authorization": `Bearer ${token}`
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",

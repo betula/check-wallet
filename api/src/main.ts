@@ -1,22 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import { EnvConfigService } from 'src/env-config/env-config.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'verbose', 'log'],
   });
 
-  const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
+  const port = app.get(EnvConfigService).get('PORT');
 
   const logger = new Logger();
   logger.verbose(`Server started on http://127.0.0.1:${port}`);
-
-  if (!port) {
-    throw new Error('.env error, PORT not specified');
-  }
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();

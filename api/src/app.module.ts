@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { AppService } from './app.service';
-import { WalletListController } from './wallet-list.controller';
-import { RateController } from './rate.controller';
-import { CurrencyListController } from './currency-list.controller';
-import { FavoriteListController } from './favorite-list.controller';
 import { AppController } from './app.controller';
+import { CurrencyListModule } from './currency-list/currency-list.module';
+import { FavoriteListModule } from './favorite-list/favotite-list.module';
+import { RateModule } from './rate/rate.module';
+import { WalletListModule } from './wallet-list/wallet-list.module';
+import { EnvConfigModule } from './env-config/env-config.module';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  controllers: [
-    AppController,
-    WalletListController,
-    RateController,
-    CurrencyListController,
-    FavoriteListController,
+  imports: [
+    CurrencyListModule,
+    FavoriteListModule,
+    RateModule,
+    WalletListModule,
+    EnvConfigModule,
   ],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
