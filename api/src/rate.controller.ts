@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { RateSaveDto } from './rate-save.dto';
 
 @Controller('rate')
 export class RateController {
@@ -14,8 +15,8 @@ export class RateController {
   }
 
   @Post('save')
-  saveList(@Body() body: any) {
-    console.log('rate/save', body);
+  saveList(@Body() rateSaveDto: RateSaveDto) {
+    console.log('rate/save', rateSaveDto);
     return {};
   }
 }

@@ -15,7 +15,7 @@ export class FavoriteListSync extends SyncAbstract {
   protected async loadHandler() {
     const addresses = walletListStore.favorites.map(wallet => wallet.address);
     try {
-      this.syncData = await api('/favorite-list/get', addresses);
+      this.syncData = await api('/favorite-list/get', { addresses });
     }
     catch {
       toast.error('Failed to load favorite list');

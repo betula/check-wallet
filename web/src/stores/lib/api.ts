@@ -24,5 +24,10 @@ export async function api(url: string, data?: unknown) {
   }
 
   const response = await fetch(apiUrl + url, options);
+
+  if (![200, 201].includes(response.status)) {
+    throw new Error('Server works incorrect');
+  }
+
   return response.json();
 }

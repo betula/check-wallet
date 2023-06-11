@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { WalletListSaveDto } from './wallet-list-save.dto';
 
 @Controller('wallet-list')
 export class WalletListController {
@@ -14,8 +15,8 @@ export class WalletListController {
   }
 
   @Post('save')
-  saveList(@Body() body: any) {
-    console.log('wallet-list/save', body);
+  saveList(@Body() walletListSaveDto: WalletListSaveDto) {
+    console.log('wallet-list/save', walletListSaveDto.wallets);
     return {};
   }
 }

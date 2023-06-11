@@ -19,7 +19,8 @@ export class WalletListSync extends SyncAbstract {
 
   protected async syncHandler() {
     try {
-      await api('/wallet-list/save', this.syncData);
+      const wallets = this.syncData;
+      await api('/wallet-list/save', { wallets });
     }
     catch {
       toast.error('Failed to save wallet list');
