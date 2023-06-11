@@ -2,12 +2,13 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useMemo } from 'react';
 import MiddleTruncate from 'react-middle-truncate';
 import { FavoriteListStoreLocal } from '../stores/favorite-list-store-local';
+import { rateStore } from '../stores/rate-store';
 
 export const FavoritesList = observer(() => {
   const store = useMemo(() => new FavoriteListStoreLocal(), []);
   useEffect(() => () => store.destroy(), [store]);
 
-  if (!store.sync.initialized) {
+  if (!store.sync.initialized || !rateStore.initialized) {
     return;
   }
 

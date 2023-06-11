@@ -6,5 +6,5 @@ export const GlobalPending = observer(() => {
     return null;
   }
 
-  return <img src="/pending.svg" style={{scale: '0.5'}} />
+  return <img src="/pending.svg" style={{scale: '0.65'}} />
 })
