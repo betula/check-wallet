@@ -1,10 +1,11 @@
 import { computed, makeObservable, observable, transaction } from "mobx";
 import { currencyListStore } from "./currency-list-store";
 import { RateSync } from "./sync/rate-sync";
+import { PrivateStoreAbstract } from "./lib/private-store-abstract";
 
 export const MANUAL_NAME = 'Manual';
 
-class RateStore {
+class RateStore extends PrivateStoreAbstract {
   sync = new RateSync();
 
   @observable.ref ethCostManual = '1.0';
@@ -26,7 +27,13 @@ class RateStore {
   }
 
   constructor() {
+    super()
     makeObservable(this);
+  }
+
+  reset() {
+    this.ethCostManual = '1.0';
+    this.selectedName = MANUAL_NAME;
   }
 
   select(name: string) {

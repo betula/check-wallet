@@ -1,10 +1,11 @@
 import { when } from "mobx";
-import { apiConfigStore } from "./api-config-store";
+import { authStore } from "./auth-store";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export async function api(url: string, data?: unknown) {
-  await when(() => apiConfigStore.tokenLoaded);
+  await when(() => authStore.isLoaded);
+  await when(() => authStore.isSignedIn);
 
   const options: RequestInit = {
     method: 'POST',
@@ -13,7 +14,7 @@ export async function api(url: string, data?: unknown) {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${apiConfigStore.token}`
+      "Authorization": `Bearer ${authStore.token}`
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",

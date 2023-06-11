@@ -10,26 +10,19 @@ export class WalletListSync extends SyncAbstract {
 
   protected async loadHandler() {
     try {
-      await api('/wallet-list/get');
+      walletListStore.list = await api('/wallet-list/get');
     }
     catch {
       toast.error('Failed to load wallet list');
     }
-    await new Promise(r => setTimeout(r, 1000));
-
-    walletListStore.list = [
-      { address: '0x123', favorite: true },
-      { address: '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae', favorite: true }
-    ];
   }
 
   protected async syncHandler() {
     try {
-      await api('/wallet-list/put', this.syncData);
+      await api('/wallet-list/save', this.syncData);
     }
     catch {
       toast.error('Failed to save wallet list');
     }
-    await new Promise(r => setTimeout(r, 1000));
   }
 }

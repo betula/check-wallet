@@ -12,17 +12,11 @@ export class CurrencyListSync extends SyncAbstract {
 
   protected async loadHandler() {
     try {
-      await api('/currency-list/get');
+      currencyListStore.list = await api('/currency-list/get');
     }
     catch {
       toast.error('Failed to load currency list');
     }
-    await new Promise(r => setTimeout(r, 1000));
-
-    currencyListStore.list = [
-      { name: 'USD', ethCost: '1.2' },
-      { name: 'EUR', ethCost: '17000' },
-    ];
   }
 
   constructor() {

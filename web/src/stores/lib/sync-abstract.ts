@@ -45,14 +45,9 @@ export abstract class SyncAbstract {
     const dettach = globalPendingStore.attach(() => this.pending);
     this.unsubscribers.push(dettach);
 
-    // Start loading and syncing only after object will be created.
+    // Start syncing only after object will be created.
     // After constructor phase.
-    setTimeout(() => {
-      if (!this.destroyed) {
-        this.enableSync();
-        this.init();
-      }
-    });
+    setTimeout(() => this.enableSync());
   }
 
   destroy() {
@@ -60,7 +55,11 @@ export abstract class SyncAbstract {
     this.unsubscribers.forEach(fn => fn());
   }
 
-  protected init() {
+  reset() {
+    this.initialized = false;
+  }
+
+  init() {
     this.throttledLoad();
   }
 
@@ -77,7 +76,7 @@ export abstract class SyncAbstract {
     finally {
       transaction(() => {
         this.numLoading--;
-        this.initialized = true;
+        this.initialized = !this.destroyed;
       });
     }
   }

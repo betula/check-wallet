@@ -16,7 +16,7 @@ import { Home } from "./components/Home";
 import { Favorites } from "./components/Favorites";
 import { CenterLayout } from "./components/CenterLayout";
 import { useEffect } from "react";
-import { apiConfigStore } from "./stores/lib/api-config-store";
+import { authStore } from "./stores/lib/auth-store";
 import { transaction } from "mobx";
 
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
@@ -77,8 +77,9 @@ function ClerkAuthConnector() {
     async function putToken() {
       const data = await getToken();
       transaction(() => {
-        apiConfigStore.token = data;
-        apiConfigStore.tokenLoaded = isLoaded;
+        authStore.token = data;
+        authStore.isLoaded = isLoaded;
+        authStore.isSignedIn = isSignedIn || false;
       });
     }
     putToken();

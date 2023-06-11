@@ -1,11 +1,16 @@
 import { rateStore } from "../rate-store";
 import { SyncAbstract } from "../lib/sync-abstract";
-import { computed, makeObservable } from "mobx";
+import { computed, makeObservable, transaction } from "mobx";
 import { toast } from "react-toastify";
 import { api } from "../lib/api";
 
+interface Data {
+  selectedName: string;
+  ethCostManual: string;
+}
+
 export class RateSync extends SyncAbstract {
-  @computed protected get syncData() {
+  @computed protected get syncData(): Data {
     return {
       selectedName: rateStore.selectedName,
       ethCostManual: rateStore.ethCostManual
@@ -19,23 +24,23 @@ export class RateSync extends SyncAbstract {
 
   protected async loadHandler() {
     try {
-      await api('/customer-rate/get');
+      const data = await api('/rate/get');
+      transaction(() => {
+        rateStore.selectedName = data.selectedName;
+        rateStore.ethCostManual = data.ethCostManual;
+      });
     }
     catch {
       toast.error('Failed to load customer rate');
     }
-    await new Promise(r => setTimeout(r, 1000));
-
-    rateStore.selectedName = 'USD';
   }
 
   protected async syncHandler() {
     try {
-      await api('/customer-rate/put', this.syncData);
+      await api('/rate/save', this.syncData);
     }
     catch {
       toast.error('Failed to save customer rate');
     }
-    await new Promise(r => setTimeout(r, 1000));
   }
 }

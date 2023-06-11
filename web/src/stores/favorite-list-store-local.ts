@@ -50,6 +50,7 @@ export class FavoriteListStoreLocal {
 
   constructor() {
     makeObservable(this);
+    this.sync.init();
   }
 
   destroy() {
