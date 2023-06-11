@@ -7,7 +7,7 @@ export const WalletListGroup = observer(() => {
 
   if (!list.length) {
     return (
-      <div>Please add some wallets</div>
+      <div className="mt-3">Please add some wallets</div>
     )
   }
 
