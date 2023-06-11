@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-
-type EnvName = 'PORT' | 'CLERK_SECRET_KEY';
+import { EnvName } from './env-config-type';
 
 @Injectable()
 export class EnvConfigService {

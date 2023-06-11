@@ -11,8 +11,8 @@ export class WalletListController {
 
   @Post('get')
   @UseGuards(AuthGuard)
-  async getList() {
-    return this.walletListService.getWallets();
+  async getList(@AuthPayload() authPayload: AuthPayloadType) {
+    return this.walletListService.getWallets(authPayload.userId);
   }
 
   @Post('save')

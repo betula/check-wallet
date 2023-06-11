@@ -11,8 +11,8 @@ export class RateController {
 
   @Post('get')
   @UseGuards(AuthGuard)
-  async getList() {
-    return this.rateService.getRate();
+  async getList(@AuthPayload() authPaload: AuthPayloadType) {
+    return this.rateService.getRate(authPaload.userId);
   }
 
   @Post('save')
