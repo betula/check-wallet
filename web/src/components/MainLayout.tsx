@@ -5,7 +5,7 @@ import { GlobalPending } from './GlobalPending';
 
 export function MainLayout({ children }: PropsWithChildren) {
   return (
-    <>
+    <div className="mb-5">
       <nav className="navbar navbar-light bg-light">
         <div className="container justify-content-between">
           <a className="navbar-brand align-items-center d-flex gap-1">
@@ -24,6 +24,6 @@ export function MainLayout({ children }: PropsWithChildren) {
       </nav>
 
       {children}
-    </>
+    </div>
   );
 }

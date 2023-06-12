@@ -2,8 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import { EnvConfigService } from 'src/env-config/env-config.service';
 import fetch from 'cross-fetch';
 
+// https://docs.etherscan.io/api-endpoints/accounts#get-ether-balance-for-multiple-addresses-in-a-single-call
 const WalletBalanceApiUrl =
-  'https://api.etherscan.io/api?module=account&action=balancemulti'; //address=0x1,0x2{50}&apikey=
+  'https://api.etherscan.io/api?module=account&action=balancemulti';
+//&address=0x1,0x2 (addresses by comma up to 20)
+//&apikey=
 
 interface WalletBalanceRecord {
   account: string;
@@ -29,7 +32,7 @@ export class WalletBalanceService {
     const response = await fetch(apiUrl);
     const data: ApiCallResponse = await response.json();
 
-    if (data?.status !== '1' || !Array.isArray(data?.result)) {
+    if (!['0', '1'].includes(data?.status) || !Array.isArray(data?.result)) {
       this.logger.error(data);
       throw new Error('Invalid response');
     }
