@@ -1,4 +1,4 @@
-How to start
+[Vite](https://vitejs.dev/)-based client.
 
 ```
 npm i
