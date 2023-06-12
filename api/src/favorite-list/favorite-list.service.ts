@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { WalletBalanceService } from './wallet-balance.service';
+import { EthToWei } from './wallet-const';
 
 export interface FavoriteRecord {
   address: string;
@@ -8,11 +10,15 @@ export interface FavoriteRecord {
 
 @Injectable()
 export class FavoriteListService {
+  constructor(private readonly walletBalanceService: WalletBalanceService) {}
+
   async getFavoriteList(addresses: string[]): Promise<FavoriteRecord[]> {
-    return addresses.map((address: string) => {
+    const records = await this.walletBalanceService.getWalletBalance(addresses);
+
+    return records.map((record) => {
       return {
-        address,
-        eth: String(Math.round(Math.random() * 1000) / 100),
+        address: record.account,
+        eth: String((parseInt(record.balance) || 0) / EthToWei),
         old: Math.random() > 0.5,
       };
     });

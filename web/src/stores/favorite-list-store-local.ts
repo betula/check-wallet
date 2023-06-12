@@ -26,9 +26,11 @@ export class FavoriteListStoreLocal {
     const ethCostFloat = parseFloat(String(currency?.ethCost)) || 0;
 
     return this.rawList.map(raw => {
-      const inCurrencyFloat = ethCostFloat * parseFloat(raw.eth) || 0;
+      const ethFloat = parseFloat(raw.eth) || 0;
+      const inCurrencyFloat = ethCostFloat * ethFloat;
       const inCurrency = this.currencyFormatter.format(inCurrencyFloat);
-      return { ...raw, inCurrency }
+      const eth = this.ethFormatter.format(ethFloat);
+      return { ...raw, inCurrency, eth }
     })
   }
 
@@ -45,6 +47,15 @@ export class FavoriteListStoreLocal {
         currency: currency.name
       });
     }
+    return new Intl.NumberFormat('en-US', options);
+  }
+
+  @computed protected get ethFormatter() {
+    const options: Intl.NumberFormatOptions = { 
+      maximumFractionDigits: 5,
+      minimumFractionDigits: 0,
+      useGrouping: false
+    };
     return new Intl.NumberFormat('en-US', options);
   }
 

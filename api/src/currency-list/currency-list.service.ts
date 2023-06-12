@@ -11,12 +11,11 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 
 const CurrencyNameList = ['USD', 'EUR'];
-// @see also https://api.coinbase.com/v2/exchange-rates?currency=ETH
 const CurrencyApiUrl =
   'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR';
 
 const CacheKey = 'CurrencyListCache';
-const CacheTtl = 1000; // 1 sec
+const CacheTtl = 300; // 300 ms
 
 interface ApiResponseData {
   USD: string;
@@ -42,6 +41,7 @@ export class CurrencyListService {
     const data: ApiResponseData = await response.json();
 
     if (!data.USD || !data.EUR) {
+      this.logger.error(data);
       throw new Error('Invalid response');
     }
 
